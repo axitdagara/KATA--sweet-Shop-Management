@@ -2,18 +2,18 @@
 const tests = require('./TestCases');
 
 async function runAllTests() {
-  console.log('\n🔍 Running Sweet Shop Backend Tests...\n');
+  console.log('\n Running Sweet Shop Backend Tests...\n');
 
   await tests.dbconnectionChecker();
 
   // Seed sample sweets
   await tests.seedDummyData();
 
-  // Run core CRUD + search tests
+  // Run CRUD + search tests
   await tests.addChecker();
   await tests.updateChecker();
 
-  // Now test by ID (you can pass any ID here)
+  //  test by ID 
   await tests.searchbyIDChecker(2);
 
   await tests.searchbyNameChecker();

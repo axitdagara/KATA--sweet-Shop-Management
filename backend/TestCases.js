@@ -14,7 +14,7 @@ async function seedDummyData() {
     { name: 'Chocolate Cake', category: 'Pastry', price: 300, quantity: 20 }
   ];
 
-  console.log('📥 Seeding dummy sweets...');
+  console.log(' Seeding dummy sweets.');
   for (const sweet of dummySweets) {
     try {
       const res = await axios.post(baseURL, sweet);

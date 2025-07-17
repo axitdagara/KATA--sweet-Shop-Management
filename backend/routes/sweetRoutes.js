@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/mysql');
-
-// Get all
+// Get 
 router.get('/sweets', (req, res) => {
   db.query('SELECT * FROM sweets', (err, results) => {
     if (err) return res.status(500).send(err);
