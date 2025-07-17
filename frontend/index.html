@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="SweetShopApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Sweet Shop Management</title>
+  <link rel="stylesheet" href="app/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app/app.module.js"></script>
+  <script src="app/app.controller.js"></script>
+  <script src="app/app.service.js"></script>
+</head>
+<body class="container mt-5" ng-controller="SweetController">
+
+  <h1 class="mb-4 text-danger"> Sweet Shop Management</h1>
+
+  <!-- Search and Sort -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <input type="text" ng-model="searchTerm" class="form-control" placeholder="Search sweets">
+    </div>
+    <div class="col-md-4">
+      <select ng-model="sortBy" class="form-select">
+        <option value="name">Sort by Name</option>
+        <option value="price">Sort by Price</option>
+        <option value="quantity">Sort by Quantity</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Add Sweet -->
+  <form ng-submit="addSweet()" class="row g-2 mb-4">
+    <div class="col-md-2"><input type="id" ng-model="newSweet.id" class="form-control" placeholder="id" required></div>
+    <div class="col-md-2"><input type="text" ng-model="newSweet.name" class="form-control" placeholder="Name" required></div>
+    <div class="col-md-2"><input type="text" ng-model="newSweet.category" class="form-control" placeholder="Category" required></div>
+    <div class="col-md-2"><input type="number" ng-model="newSweet.price" class="form-control" placeholder="Price" required></div>
+    <div class="col-md-2"><input type="number" ng-model="newSweet.quantity" class="form-control" placeholder="Qty" required></div>
+    <div class="col-md-2"><button type="submit" class="btn btn-success">Add</button></div>
+  </form>
+
+  <!-- Sweet List -->
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+              <th>id</th> <th>Name</th><th>Category</th><th>Price</th><th>Quantity</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="sweet in sweets | filter:searchTerm | orderBy:sortBy">
+        <td><input ng-model="sweet.id" class="form-control"></td>
+        <td><input ng-model="sweet.name" class="form-control"></td>
+        <td><input ng-model="sweet.category" class="form-control"></td>
+        <td><input ng-model="sweet.price"  class="form-control"></td>
+        <td><input ng-model="sweet.quantity" type="number" class="form-control"></td>
+        <td>
+          <button class="btn btn-primary btn-sm" ng-click="updateSweet(sweet)">Update</button>
+          <button class="btn btn-danger btn-sm" ng-click="deleteSweet(sweet.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
